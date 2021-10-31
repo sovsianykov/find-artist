@@ -1,25 +1,24 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { createBrowserHistory } from "history";
+import {
+  BrowserRouter as Router,
+  matchPath,
+  useLocation,
+} from "react-router-dom";
+import { ThemeProvider } from "@mui/material";
+import theme from "./constants/theme";
+import Routing from "./Routing/Routing";
+import HeaderApp from "./components/Header/HeaderApp";
 
 function App() {
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ThemeProvider theme={theme}>
+      <Router>
+          <HeaderApp/>
+        <Routing  />
+      </Router>
+    </ThemeProvider>
   );
 }
 
