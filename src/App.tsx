@@ -16,7 +16,7 @@ function App() {
     <ThemeProvider theme={theme}>
       <Router>
           <HeaderApp/>
-        <Routing  />
+        <Routing />
       </Router>
     </ThemeProvider>
   );
