@@ -1,11 +1,11 @@
 import React from 'react';
 
-const MainList = () => {
+const Projects = () => {
     return (
         <div>
-          Main List
+          Projects
         </div>
     );
 };
 
-export default MainList;
+export default Projects;

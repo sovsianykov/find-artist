@@ -10,15 +10,17 @@ import {Link} from "react-router-dom"
 const useStyles = makeStyles((theme:Theme) =>
 createStyles({
     root : {
-        width: "100%",
+        maxWidth: 1400,
         minHeight: 30,
         display: "flex",
         alignItems:"center",
-        fixed: true,
+        position: "absolute",
+        bottom: 0,
+        right: 100
     },
     box :{
        width: "60%",
-       height: 40,
+       height: 50,
         display: "flex",
         alignItems: "center",
         justifyContent:"space-between",
@@ -26,12 +28,19 @@ createStyles({
         marginLeft: "auto",
        } ,
     link : {
-        height: 30,
+        height: 40,
         display: "flex",
         alignItems: "center",
         justifyContent:"center",
         textDecoration: "none",
-        color: theme.palette.success.light
+        color: theme.palette.success.main,
+        fontWeight: 600,
+        letterSpacing: 1.9,
+        fontSize: '20px',
+        transition: "0.15s ease-in-out",
+        "&:hover" : {
+            color: theme.palette.success.light,
+        }
     }
 
 }))
@@ -45,6 +54,8 @@ const HeaderNav:FunctionComponent = () => {
                 <Link to={routerLinks.home} className={classes.link} >Home</Link>
                 <Link to={routerLinks.main_list} className={classes.link} >Base</Link>
                 <Link to={routerLinks.about} className={classes.link} >About</Link>
+                <Link to={routerLinks.projects} className={classes.link} >Projects</Link>
+                <Link to={routerLinks.contactUs} className={classes.link} >Contact Us</Link>
             </Box>
         </Container>
     );

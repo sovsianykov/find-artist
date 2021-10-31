@@ -32,7 +32,7 @@ const theme = createTheme({
             dark: "#280b03",
         },
         success : {
-            main: "#fdfdfd",
+            main: "#c5c5c5",
             light: "#fff",
             dark: "#000",
         }

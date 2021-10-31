@@ -19,9 +19,9 @@ const HeaderApp: FunctionComponent = () => {
   const classes = useStyles();
 
   return (
-    <Container className={classes.root}>
+    <header className={classes.root}>
       <HeaderNav />
-    </Container>
+    </header>
   );
 };
 
