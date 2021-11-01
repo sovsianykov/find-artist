@@ -11,7 +11,8 @@ module.exports = {
             '@assets': resolvePath('./src/assets'),
             '@constants': resolvePath('./src/constants'),
             '@pages': resolvePath('./src/pages'),
-            '@services': resolvePath('./src/services')
+            '@services': resolvePath('./src/services'),
+            '@models': resolvePath('./src/models')
         }
     },
     // ...
