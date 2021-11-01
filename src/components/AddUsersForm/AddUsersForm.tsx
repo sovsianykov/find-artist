@@ -152,7 +152,7 @@ const AddUsersForm: FunctionComponent = () => {
             value={newUser.avatarUrl}
             onChange={onchangeHandler}
           />
-          <Button variant="contained" onClick={onSubmitHandler}>
+          <Button variant="outlined"  onClick={onSubmitHandler}>
             Submit
           </Button>
         </Box>
