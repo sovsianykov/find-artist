@@ -8,8 +8,8 @@ const useStyles = makeStyles((theme: Theme) =>
     root: {
       width: "100%",
       height: 200,
-      position: "relative",
-      margin: "0 auto",
+      position: "fixed",
+        top:0,
       background: theme.palette.primary.light,
     },
   })

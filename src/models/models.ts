@@ -1,5 +1,7 @@
 
+
 export interface User {
+    id: string;
   firstName: string;
   lastName: string;
   country: string;
@@ -7,11 +9,13 @@ export interface User {
   phone: string;
   avatarUrl?: string;
   instrument?: string;
-  hasProfile?: boolean;
-  isAuthorized?: boolean;
+  hasProfile?: string ;
+  isAuthorized?: string;
   age?: number;
+  description?: string;
 }
 export  const initialUser = {
+    id: "first",
     firstName: "",
     lastName: "",
     country: "",
@@ -19,8 +23,9 @@ export  const initialUser = {
     phone:"",
     avatarUrl : "",
     instrument: "",
-    hasProfile: false,
-    isAuthorized: false,
+    hasProfile: '',
+    isAuthorized: '',
+    description: '',
     age: 0
 }
  export interface Users {

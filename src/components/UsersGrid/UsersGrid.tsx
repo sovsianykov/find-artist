@@ -1,12 +1,11 @@
 import React from 'react';
 
-const About = () => {
+const UsersGrid = () => {
     return (
         <div>
-           About
-
+            
         </div>
     );
 };
 
-export default About;
+export default UsersGrid;

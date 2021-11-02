@@ -3,10 +3,11 @@ import {User, Users} from "../../models/models";
 import {db} from "../../firebase/firebase";
 import { collection, getDocs } from "firebase/firestore"
 import AddUsersForm from "../../components/AddUsersForm/AddUsersForm";
+import AccordionApp from "../../shared/components/Acordion/AcordionApp";
 
 const MainList = () => {
 
-    const [users, setUsers] = useState<User|any[]>([])
+    const [users, setUsers] = useState<User[]|any[]>([])
     const usersCollectionRef = collection(db,"artists")
     useEffect(() =>{
         const getUsers = async () => {
@@ -23,6 +24,7 @@ const MainList = () => {
     return (
         <div>
           <AddUsersForm/>
+          <AccordionApp users={users}/>
         </div>
     );
 };
