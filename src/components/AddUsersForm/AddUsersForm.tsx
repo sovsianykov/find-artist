@@ -5,10 +5,10 @@ import React, {
   useState,
 } from "react";
 import { initialUser, User } from "../../models/models";
-import {Box, Button, Container, Paper, TextField, Theme} from "@mui/material";
+import { Box, Button, Container, Paper, Theme } from "@mui/material";
 import { createStyles, makeStyles } from "@mui/styles";
-import { db } from "../../firebase/firebase";
-import { collection,  addDoc } from "firebase/firestore";
+import { useDispatch } from "react-redux";
+import { createUser } from "../../redux/actions";
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
@@ -47,19 +47,18 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 const AddUsersForm: FunctionComponent = () => {
+  const dispatch = useDispatch();
   const classes = useStyles();
   const [newUser, setNewUser] = useState<User>(initialUser);
-  const usersCollectionRef = collection(db, "artists");
 
   const onchangeHandler = (e: FormEvent<HTMLInputElement>) => {
     setNewUser({ ...newUser, [e.currentTarget.name]: e.currentTarget.value });
   };
   const onSubmitHandler = async (e: SyntheticEvent) => {
     e.preventDefault();
-    if (newUser.firstName && newUser.lastName) {
-      await addDoc(usersCollectionRef, newUser)
-  }
+    dispatch(createUser(newUser));
   };
+
   return (
     <Container>
       <Paper className={classes.mainWrapper}>
@@ -74,7 +73,7 @@ const AddUsersForm: FunctionComponent = () => {
         >
           <label htmlFor="firstName">firstName</label>
           <input
-             required
+            required
             className={classes.input}
             name="firstName"
             id="firstName"
@@ -141,11 +140,11 @@ const AddUsersForm: FunctionComponent = () => {
           />
           <label htmlFor="isAuthorized">isAuthorized</label>
           <input
-              className={classes.input}
-              name="isAuthorized"
-              id="isAuthorized"
-              value={newUser.isAuthorized}
-              onChange={onchangeHandler}
+            className={classes.input}
+            name="isAuthorized"
+            id="isAuthorized"
+            value={newUser.isAuthorized}
+            onChange={onchangeHandler}
           />
           <label htmlFor="age">age</label>
           <input
@@ -157,11 +156,11 @@ const AddUsersForm: FunctionComponent = () => {
           />
           <label htmlFor="description">description</label>
           <input
-              className={classes.input}
-              name="description"
-              id="description"
-              value={newUser.description}
-              onChange={onchangeHandler}
+            className={classes.input}
+            name="description"
+            id="description"
+            value={newUser.description}
+            onChange={onchangeHandler}
           />
           <label htmlFor="avatarUrl">avatarUrl</label>
           <input
@@ -171,7 +170,7 @@ const AddUsersForm: FunctionComponent = () => {
             value={newUser.avatarUrl}
             onChange={onchangeHandler}
           />
-          <Button variant="outlined"  onClick={onSubmitHandler}>
+          <Button variant="outlined" onClick={onSubmitHandler}>
             Submit
           </Button>
         </Box>

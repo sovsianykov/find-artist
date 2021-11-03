@@ -1,13 +1,14 @@
 export const FETCH_START = "FETCH_START";
 export const FETCH_SUCCESS = "FETCH_SUCCESS";
 export const FETCH_FAILURE = "FETCH_FAILURE";
-export const FETCH_DATA = "FETCH_DATA";
+export const CREATE_USER = "CREATE_USER";
+
 
 export enum ActionTypes {
   FETCH_START = "FETCH_START",
   FETCH_SUCCESS = "FETCH_SUCCESS",
   FETCH_FAILURE = "FETCH_FAILURE",
-  FETCH_DATA = "FETCH_DATA",
+  CREATE_USER = "CREATE_USER",
 }
 
 export const NEW_USER = "NEW_USER";
@@ -25,7 +26,8 @@ interface FetchFailure {
   payload: string;
 }
 interface NewUser {
-  type: ActionTypes.FETCH_DATA;
+  type: ActionTypes.CREATE_USER;
+
   payload: string;
 }
 
