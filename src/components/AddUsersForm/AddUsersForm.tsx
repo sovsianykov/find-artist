@@ -5,51 +5,45 @@ import React, {
   useState,
 } from "react";
 import { initialUser, User } from "../../models/models";
-import { Box, Container, Paper, Theme } from "@mui/material";
-import Button from "../../shared/components/Button/CustomButton"
+import {Box, Container, Paper, TextareaAutosize, TextField, Theme} from "@mui/material";
+import Button from "../../shared/components/Button/CustomButton";
 import { createStyles, makeStyles } from "@mui/styles";
 import { useDispatch } from "react-redux";
 import { createUser } from "../../redux/actions";
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
-
       width: 375,
-      height: 500,
-      padding: `${theme.spacing(2)} 0 0 0`,
-      display: "flex",
-      flexDirection: "column",
-      alignItems: "center",
-      justifyContent: "flex-start",
+      height: "800px",
+      padding: `${theme.spacing(3)}`,
     },
     BoxWrapper: {
       width: "100%",
-      height: 800,
-      padding: theme.spacing(1),
-      // display: "flex",
-      // alignItems: "center",
-      // justifyContent: "center",
+      height: 600,
+      // padding: theme.spacing(1),
+
     },
-    input: {
-      display: "block",
+    inputField: {
+       display: "block",
       width: 200,
-      height: 20,
       fontSize: "18px",
       padding: theme.spacing(1),
+      border: "1px solid red"
     },
     mainWrapper: {
       margin: "20px auto",
       maxWidth: 600,
       height: 500,
       display: "flex",
+      flexDirection: "column",
+      justifyContent:"space-between",
+      alignItems:"center"
     },
-    submitBtnWrapper : {
-
+    submitBtnWrapper: {
       width: 375,
-      marginTop: "50px",
-      height:30,
-
-    }
+      marginTop: 20,
+      height: 50
+    },
   })
 );
 
@@ -58,7 +52,9 @@ const AddUsersForm: FunctionComponent = () => {
   const classes = useStyles();
   const [newUser, setNewUser] = useState<User>(initialUser);
 
-  const onchangeHandler = (e: FormEvent<HTMLInputElement>) => {
+  const onchangeHandler = (
+    e: FormEvent<HTMLTextAreaElement | HTMLInputElement>
+  ) => {
     setNewUser({ ...newUser, [e.currentTarget.name]: e.currentTarget.value });
   };
   const onSubmitHandler = async (e: SyntheticEvent) => {
@@ -78,112 +74,90 @@ const AddUsersForm: FunctionComponent = () => {
           noValidate
           autoComplete="off"
         >
-          <label htmlFor="firstName">firstName</label>
-          <input
+          <TextField
             required
-            className={classes.input}
+            className={classes.inputField}
             name="firstName"
             id="firstName"
+            label="first name"
+            variant="standard"
             value={newUser.firstName}
             onChange={onchangeHandler}
           />
-          <label htmlFor="lastName">lastName</label>
-          <input
-            className={classes.input}
+
+          <TextField
+              required
+            className={classes.inputField}
             name="lastName"
             id="lastName"
+            label="lastName"
+            variant="standard"
             value={newUser.lastName}
             onChange={onchangeHandler}
           />
-          <label htmlFor="instrument">instrument</label>
-          <input
-            className={classes.input}
+          <TextField
+              required
+              variant="standard"
+            className={classes.inputField}
+            label = "instrument"
             name="instrument"
             id="instrument"
             value={newUser.instrument}
             onChange={onchangeHandler}
           />
-          <label htmlFor="country">country</label>
-          <input
-            className={classes.input}
+          <TextField
+
+            className={classes.inputField}
+            variant="standard"
+            label="country"
             name="country"
             id="country"
             value={newUser.country}
             onChange={onchangeHandler}
           />
-          <label htmlFor="city">city</label>
-          <input
-            className={classes.input}
+          <TextField
+            className={classes.inputField}
+            variant="standard"
+            label="city"
             name="city"
             id="city"
             value={newUser.city}
             onChange={onchangeHandler}
           />
-        </Box>
-        <Box
-          component="form"
-          className={classes.root}
-          sx={{
-            "& > :not(style)": { m: 1, width: "25ch" },
-          }}
-          noValidate
-          autoComplete="off"
-        >
-          <label htmlFor="phone">phone</label>
-          <input
-            className={classes.input}
+          <TextField
+            className={classes.inputField}
+            variant="standard"
+            label="phone"
             name="phone"
             id="phone"
             value={newUser.phone}
             onChange={onchangeHandler}
           />
-          <label htmlFor="hasProfile">hasProfile</label>
-          <input
-            className={classes.input}
-            name="hasProfile"
-            id="hasProfile"
-            value={newUser.hasProfile}
-            onChange={onchangeHandler}
-          />
-          <label htmlFor="isAuthorized">isAuthorized</label>
-          <input
-            className={classes.input}
-            name="isAuthorized"
-            id="isAuthorized"
-            value={newUser.isAuthorized}
-            onChange={onchangeHandler}
-          />
-          <label htmlFor="age">age</label>
-          <input
-            className={classes.input}
-            name="age"
-            id="age"
-            value={newUser.age}
-            onChange={onchangeHandler}
-          />
-          <label htmlFor="description">description</label>
-          <input
-            className={classes.input}
+          <div className={classes.submitBtnWrapper}>
+          <TextareaAutosize
+            className={classes.inputField}
             name="description"
             id="description"
             value={newUser.description}
             onChange={onchangeHandler}
-          />
-          <label htmlFor="avatarUrl">avatarUrl</label>
-          <input
-            className={classes.input}
+          /></div>
+          <TextField
+              variant="standard"
+            className={classes.inputField}
+              label="avatarUrl"
             name="avatarUrl"
             id="avatarUrl"
             value={newUser.avatarUrl}
             onChange={onchangeHandler}
           />
           <div className={classes.submitBtnWrapper}>
+            <Button fullWidth={true} onClick={onSubmitHandler}>
+              Submit
+            </Button>
           </div>
         </Box>
       </Paper>
-      <Button fullWidth={true}  onClick={onSubmitHandler} >
-        Submit
-      </Button>
+
     </Container>
   );
 };

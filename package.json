@@ -23,6 +23,7 @@
     "@types/redux": "^3.6.0",
     "firebase": "^9.2.0",
     "husky": "^7.0.4",
+    "joi": "^17.4.2",
     "lint-staged": "^11.2.6",
     "prettier": "^2.4.1",
     "react": "^17.0.2",

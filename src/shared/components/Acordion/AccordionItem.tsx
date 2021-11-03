@@ -8,31 +8,31 @@ import AccordionDetails from "@mui/material/AccordionDetails";
 import { Avatar, Button } from "@mui/material";
 import { Delete, Edit } from "@mui/icons-material";
 import emptyAvatar from "../../../assets/avatars/emptyAvatar.png";
-import { collection, updateDoc, doc ,deleteDoc} from "firebase/firestore";
-import {db} from "../../../firebase/firebase";
-import {useFetch} from "../../../hooks/useFetch";
-
-
+import { updateDoc, doc, deleteDoc } from "firebase/firestore";
+import { db } from "../../../firebase/firebase";
+import { useDispatch } from "react-redux";
+import { fetchSuccess, fetchStart } from "../../../redux/actions";
 
 interface AccordionItemProps {
   user: User;
 }
-const usersCollectionRef = collection(db, "artists");
 
 const AccordionItem: FunctionComponent<AccordionItemProps> = ({ user }) => {
-
+  const dispatch = useDispatch();
   const avatar = useMemo(() => {
     return user.avatarUrl === "" ? emptyAvatar : user.avatarUrl;
   }, [user.avatarUrl]);
 
-  const updateUser =async( value: any)=>{
-       const userDoc = doc(db,"artists", user.id);
-      await updateDoc(userDoc, {firstName: "Vlad"});
-  }
-    const deleteUser = async()=>{
-        const userDoc = doc(db,"artists", user.id);
-        await deleteDoc(userDoc);
-    }
+  const updateUser = async (value: any) => {
+    const userDoc = doc(db, "artists", user.id);
+    await updateDoc(userDoc, { firstName: "Vlad" });
+  };
+  const deleteUser = async () => {
+    const userDoc = doc(db, "artists", user.id);
+    await deleteDoc(userDoc);
+    dispatch(fetchStart());
+    dispatch(fetchSuccess());
+  };
   return (
     <Accordion>
       <AccordionSummary
