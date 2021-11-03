@@ -8,15 +8,26 @@ import AccordionDetails from "@mui/material/AccordionDetails";
 import { Avatar, Button } from "@mui/material";
 import { Delete, Edit } from "@mui/icons-material";
 import emptyAvatar from "../../../assets/avatars/emptyAvatar.png";
+import { collection, updateDoc, doc } from "firebase/firestore";
+import {db} from "../../../firebase/firebase";
+
+
 
 interface AccordionItemProps {
   user: User;
 }
+const usersCollectionRef = collection(db, "artists");
 
 const AccordionItem: FunctionComponent<AccordionItemProps> = ({ user }) => {
+
   const avatar = useMemo(() => {
     return user.avatarUrl === "" ? emptyAvatar : user.avatarUrl;
   }, [user.avatarUrl]);
+
+  const updateUser =async( value: any)=>{
+       const userDoc = doc(db,"artists", user.id)
+      await updateDoc(userDoc, {firstName: "Vlad"})
+  }
   return (
     <Accordion>
       <AccordionSummary
@@ -28,16 +39,16 @@ const AccordionItem: FunctionComponent<AccordionItemProps> = ({ user }) => {
         <Typography>
           {user.firstName} {user.lastName}{" "}
         </Typography>
-          <Typography variant='subtitle1' color='primary'>
-                {user.instrument}
-          </Typography>
+        <Typography variant="subtitle1" color="primary">
+          {user.instrument}
+        </Typography>
       </AccordionSummary>
       <AccordionDetails>
         <Typography>
           {user.description}
           {user.phone}
         </Typography>
-        <Button variant="text" color="secondary">
+        <Button variant="text" color="secondary" onClick={updateUser}>
           <Edit />
         </Button>
         <Button variant="text" color="secondary">

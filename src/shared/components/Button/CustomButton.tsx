@@ -1,15 +1,22 @@
 import * as React from "react";
 import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
-import { FunctionComponent } from "react";
+import { FunctionComponent, SyntheticEvent } from "react";
+export interface ButtonProps {
+  children: string;
+  onClick: (e: SyntheticEvent) => Promise<void>;
+  fullWidth?: boolean;
+}
 
-const CustomButton: FunctionComponent = () => {
+const CustomButton: FunctionComponent<ButtonProps> = ({
+  onClick,
+  children,
+    fullWidth
+}) => {
   return (
-    <Stack spacing={2} direction="row">
-      <Button variant="text">Text</Button>
-      <Button variant="contained">Contained</Button>
-      <Button variant="outlined">Outlined</Button>
-    </Stack>
+    <Button variant="contained" fullWidth={fullWidth} onClick={onClick}>
+      {children}
+    </Button>
   );
 };
 export default CustomButton;

@@ -5,27 +5,30 @@ import React, {
   useState,
 } from "react";
 import { initialUser, User } from "../../models/models";
-import { Box, Button, Container, Paper, Theme } from "@mui/material";
+import { Box, Container, Paper, Theme } from "@mui/material";
+import Button from "../../shared/components/Button/CustomButton"
 import { createStyles, makeStyles } from "@mui/styles";
 import { useDispatch } from "react-redux";
 import { createUser } from "../../redux/actions";
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
+
       width: 375,
-      padding: theme.spacing(2),
+      height: 500,
+      padding: `${theme.spacing(2)} 0 0 0`,
       display: "flex",
       flexDirection: "column",
       alignItems: "center",
-      justifyContent: "space-between",
+      justifyContent: "flex-start",
     },
-    inputWrapper: {
+    BoxWrapper: {
       width: "100%",
-      height: 30,
+      height: 800,
       padding: theme.spacing(1),
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "center",
+      // display: "flex",
+      // alignItems: "center",
+      // justifyContent: "center",
     },
     input: {
       display: "block",
@@ -39,10 +42,14 @@ const useStyles = makeStyles((theme: Theme) =>
       maxWidth: 600,
       height: 500,
       display: "flex",
-      alignItems: "flex-start",
-      justifyContent: "center",
-      padding: theme.spacing(1),
     },
+    submitBtnWrapper : {
+
+      width: 375,
+      marginTop: "50px",
+      height:30,
+
+    }
   })
 );
 
@@ -170,11 +177,13 @@ const AddUsersForm: FunctionComponent = () => {
             value={newUser.avatarUrl}
             onChange={onchangeHandler}
           />
-          <Button variant="outlined" onClick={onSubmitHandler}>
-            Submit
-          </Button>
+          <div className={classes.submitBtnWrapper}>
+          </div>
         </Box>
       </Paper>
+      <Button fullWidth={true}  onClick={onSubmitHandler} >
+        Submit
+      </Button>
     </Container>
   );
 };
