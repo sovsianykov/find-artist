@@ -8,7 +8,7 @@ import AccordionDetails from "@mui/material/AccordionDetails";
 import { Avatar, Button } from "@mui/material";
 import { Delete, Edit } from "@mui/icons-material";
 import emptyAvatar from "../../../assets/avatars/emptyAvatar.png";
-import { collection, updateDoc, doc } from "firebase/firestore";
+import { collection, updateDoc, doc ,deleteDoc} from "firebase/firestore";
 import {db} from "../../../firebase/firebase";
 
 
@@ -28,6 +28,10 @@ const AccordionItem: FunctionComponent<AccordionItemProps> = ({ user }) => {
        const userDoc = doc(db,"artists", user.id)
       await updateDoc(userDoc, {firstName: "Vlad"})
   }
+    const deleteUser =async()=>{
+        const userDoc = doc(db,"artists", user.id)
+        await deleteDoc(userDoc)
+    }
   return (
     <Accordion>
       <AccordionSummary
@@ -51,7 +55,7 @@ const AccordionItem: FunctionComponent<AccordionItemProps> = ({ user }) => {
         <Button variant="text" color="secondary" onClick={updateUser}>
           <Edit />
         </Button>
-        <Button variant="text" color="secondary">
+        <Button variant="text" color="secondary" onClick={deleteUser}>
           <Delete />
         </Button>
       </AccordionDetails>
