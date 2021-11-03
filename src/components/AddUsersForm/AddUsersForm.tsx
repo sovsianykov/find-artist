@@ -74,6 +74,7 @@ const AddUsersForm: FunctionComponent = () => {
         >
           <label htmlFor="firstName">firstName</label>
           <input
+             required
             className={classes.input}
             name="firstName"
             id="firstName"

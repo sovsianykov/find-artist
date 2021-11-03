@@ -4,23 +4,25 @@ import {db} from "../../firebase/firebase";
 import { collection, getDocs } from "firebase/firestore"
 import AddUsersForm from "../../components/AddUsersForm/AddUsersForm";
 import AccordionApp from "../../shared/components/Acordion/AcordionApp";
+import {useDispatch} from "react-redux";
+import {fetchSuccess} from "../../redux/actions";
+import {useTypesSelector} from "../../hooks/useTypesSelector";
 
 const MainList = () => {
 
-    const [users, setUsers] = useState<User[]|any[]>([])
-    const usersCollectionRef = collection(db,"artists")
+    // const [users, setUsers] = useState<User[]|any[]>([])
+    const dispatch = useDispatch()
+
     useEffect(() =>{
-        const getUsers = async () => {
-          const data = await getDocs(usersCollectionRef);
-          if (data) {
-          setUsers(data.docs.map((doc) =>({...doc.data(),id:doc.id})))}
-          console.log(data)
-
-        }
-        getUsers()
-    },[])
-    console.log(users)
-
+        dispatch(fetchSuccess())
+    },[dispatch])
+    const { users , loading, error } = useTypesSelector(state => state.apiReducer)
+    console.log("state is", users)
+     if (loading ) {
+         return (
+             <h1>Loading ...</h1>
+         )
+     }
     return (
         <div>
           <AddUsersForm/>

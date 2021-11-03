@@ -7,7 +7,7 @@ const useStyles = makeStyles((theme: Theme) =>
     createStyles({
         root: {
             maxWidth: "1600px",
-            margin: "200px 0 auto",
+            margin: "200px  auto 0 ",
             background: theme.palette.success.main,
         },
     })

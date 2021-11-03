@@ -30,5 +30,11 @@ export  const initialUser = {
 }
  export interface Users {
      users : User[];
+ }
 
+ export interface InitialState {
+     users : User[];
+     newUser: User;
+     loading: boolean;
+     error : null | string;
  }
