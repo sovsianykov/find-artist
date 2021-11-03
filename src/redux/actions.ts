@@ -44,3 +44,9 @@ export const createUser = (newUser: User) => {
     }
   };
 };
+export const deleteUser = (id:string) =>{
+  return {
+    type: ActionTypes.DELETE_USER,
+    payload:id
+  }
+}

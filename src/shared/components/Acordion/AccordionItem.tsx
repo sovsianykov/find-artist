@@ -10,6 +10,7 @@ import { Delete, Edit } from "@mui/icons-material";
 import emptyAvatar from "../../../assets/avatars/emptyAvatar.png";
 import { collection, updateDoc, doc ,deleteDoc} from "firebase/firestore";
 import {db} from "../../../firebase/firebase";
+import {useFetch} from "../../../hooks/useFetch";
 
 
 
@@ -25,12 +26,12 @@ const AccordionItem: FunctionComponent<AccordionItemProps> = ({ user }) => {
   }, [user.avatarUrl]);
 
   const updateUser =async( value: any)=>{
-       const userDoc = doc(db,"artists", user.id)
-      await updateDoc(userDoc, {firstName: "Vlad"})
+       const userDoc = doc(db,"artists", user.id);
+      await updateDoc(userDoc, {firstName: "Vlad"});
   }
-    const deleteUser =async()=>{
-        const userDoc = doc(db,"artists", user.id)
-        await deleteDoc(userDoc)
+    const deleteUser = async()=>{
+        const userDoc = doc(db,"artists", user.id);
+        await deleteDoc(userDoc);
     }
   return (
     <Accordion>

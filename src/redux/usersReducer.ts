@@ -1,9 +1,9 @@
-import { InitialState, initialUser } from "../models/models";
+import {InitialState, initialUser, User} from "../models/models";
 import {
   FETCH_FAILURE,
   FETCH_START,
   FETCH_SUCCESS,
-  CREATE_USER,
+  CREATE_USER, Action, DELETE_USER,
 } from "./constants";
 
 const initialState: InitialState = {
@@ -13,7 +13,7 @@ const initialState: InitialState = {
   newUser: initialUser,
 };
 
-const userReducer = (state: InitialState = initialState, action: any) => {
+const userReducer = (state: InitialState = initialState, action: Action) => {
   switch (action.type) {
     case FETCH_START:
       return {
@@ -36,6 +36,11 @@ const userReducer = (state: InitialState = initialState, action: any) => {
       return {
         ...state,
         newUser: action.payload,
+      };
+    case DELETE_USER:
+      return {
+        ...state,
+        users: state.users.filter((user:User) =>  user.id !== action.payload)
       };
     default:
       return state;
