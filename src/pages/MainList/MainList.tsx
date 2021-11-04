@@ -7,7 +7,7 @@ const MainList = () => {
 
     const {users, loading,error} = useFetch()
 
-    console.log("state is", users)
+
      if (loading ) {
          return (
              <h1>Loading ...</h1>

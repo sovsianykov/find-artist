@@ -9,7 +9,7 @@ import {Box, Container, Paper, TextareaAutosize, TextField, Theme, Typography} f
 import Button from "../../shared/components/Button/CustomButton";
 import { createStyles, makeStyles } from "@mui/styles";
 import { useDispatch } from "react-redux";
-import { createUser } from "../../redux/actions";
+import {createUser, fetchStart, fetchSuccess} from "../../redux/actions";
 
 
 export interface AddUsersFormProps {
@@ -91,6 +91,8 @@ const AddUsersForm: FunctionComponent<AddUsersFormProps> = ({title}) => {
   const onSubmitHandler = async (e: SyntheticEvent) => {
     e.preventDefault();
     dispatch(createUser(newUser));
+    dispatch(fetchStart());
+    dispatch(fetchSuccess());
   };
 
   return (

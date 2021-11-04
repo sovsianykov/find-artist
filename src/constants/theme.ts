@@ -35,8 +35,12 @@ const theme = createTheme({
             main: "#c5c5c5",
             light: "#fff",
             dark: "#000",
-        }
-
+        },
+        warning : {
+            main: "#8c8b8b",
+            light: "#f3c56c",
+            dark: "#570202",
+        },
     },
     spacing: 4,
 });
