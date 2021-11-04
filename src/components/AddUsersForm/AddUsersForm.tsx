@@ -5,22 +5,49 @@ import React, {
   useState,
 } from "react";
 import { initialUser, User } from "../../models/models";
-import {Box, Container, Paper, TextareaAutosize, TextField, Theme} from "@mui/material";
+import {Box, Container, Paper, TextareaAutosize, TextField, Theme, Typography} from "@mui/material";
 import Button from "../../shared/components/Button/CustomButton";
 import { createStyles, makeStyles } from "@mui/styles";
 import { useDispatch } from "react-redux";
 import { createUser } from "../../redux/actions";
+
+
+export interface AddUsersFormProps {
+   title : string;
+}
+
+
 const useStyles = makeStyles((theme: Theme) =>
+
+
+
   createStyles({
     root: {
-      width: 375,
-      height: "800px",
+      margin: "20px auto",
+      maxWidth: 350,
+      display: "flex",
+      flexDirection: "column",
+      justifyContent:"center",
+      alignItems:"center"
+    },
+    mainWrapper: {
+      width: 350,
+      minHeight: 600,
       padding: `${theme.spacing(3)}`,
+      display:'flex',
+      flexDirection: "column",
+      alignItems: "center",
+      justifyContent:"center",
     },
     BoxWrapper: {
       width: "100%",
-      height: 600,
-      // padding: theme.spacing(1),
+      minHeight: 600,
+      padding: theme.spacing(1),
+      display: "flex",
+      flexDirection: "column",
+      justifyContent:"space-around",
+      alignItems:"center"
+
 
     },
     inputField: {
@@ -30,24 +57,28 @@ const useStyles = makeStyles((theme: Theme) =>
       padding: theme.spacing(1),
       border: "1px solid red"
     },
-    mainWrapper: {
-      margin: "20px auto",
-      maxWidth: 600,
-      height: 500,
-      display: "flex",
-      flexDirection: "column",
-      justifyContent:"space-between",
-      alignItems:"center"
-    },
-    submitBtnWrapper: {
+    txtAreaWrapper: {
       width: 375,
-      marginTop: 20,
-      height: 50
+      height: 50,
+      display:'flex',
+      alignItems: "center",
+      justifyContent:"center"
     },
+    description: {
+      display: "block",
+      width: "400px!important",
+      fontSize: "16px",
+      padding: theme.spacing(2),
+
+    },
+    title : {
+      textAlign: "center",
+      letterSpacing: 1.9
+    }
   })
 );
 
-const AddUsersForm: FunctionComponent = () => {
+const AddUsersForm: FunctionComponent<AddUsersFormProps> = ({title}) => {
   const dispatch = useDispatch();
   const classes = useStyles();
   const [newUser, setNewUser] = useState<User>(initialUser);
@@ -64,16 +95,20 @@ const AddUsersForm: FunctionComponent = () => {
 
   return (
     <Container>
-      <Paper className={classes.mainWrapper}>
+      <Paper className={classes.root}>
+
         <Box
           component="form"
-          className={classes.root}
+          className={classes.mainWrapper}
           sx={{
             "& > :not(style)": { m: 1, width: "25ch" },
           }}
           noValidate
           autoComplete="off"
         >
+          <Typography variant='h5' className={classes.title}>
+            {title}
+          </Typography>
           <TextField
             required
             className={classes.inputField}
@@ -133,28 +168,30 @@ const AddUsersForm: FunctionComponent = () => {
             value={newUser.phone}
             onChange={onchangeHandler}
           />
-          <div className={classes.submitBtnWrapper}>
+          <TextField
+              variant="standard"
+              className={classes.inputField}
+              label="avatarUrl"
+              name="avatarUrl"
+              id="avatarUrl"
+              value={newUser.avatarUrl}
+              onChange={onchangeHandler}
+          />
+
+          <div className={classes.txtAreaWrapper}>
           <TextareaAutosize
-            className={classes.inputField}
+              placeholder='description'
+            className={classes.description}
             name="description"
             id="description"
             value={newUser.description}
             onChange={onchangeHandler}
           /></div>
-          <TextField
-              variant="standard"
-            className={classes.inputField}
-              label="avatarUrl"
-            name="avatarUrl"
-            id="avatarUrl"
-            value={newUser.avatarUrl}
-            onChange={onchangeHandler}
-          />
-          <div className={classes.submitBtnWrapper}>
-            <Button fullWidth={true} onClick={onSubmitHandler}>
+
+            <Button  onClick={onSubmitHandler}>
               Submit
             </Button>
-          </div>
+
         </Box>
       </Paper>
 

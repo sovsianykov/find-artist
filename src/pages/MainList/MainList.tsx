@@ -20,7 +20,7 @@ const MainList = () => {
     }
     return (
         <div>
-          <AddUsersForm/>
+          <AddUsersForm title={"Create a new User"}/>
           <AccordionApp users={users}/>
         </div>
     );
