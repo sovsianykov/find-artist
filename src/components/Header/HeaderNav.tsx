@@ -43,7 +43,8 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     dropDown: {
       position: "relative",
-      height: 40,
+      zIndex: 10,
+      height:40,
       display: "flex",
       alignItems: "center",
       justifyContent: "center",
@@ -65,14 +66,14 @@ const HeaderNav: FunctionComponent = () => {
   const [active, setActive] = useState<boolean>(false);
   const classes = useStyles();
   const onMouseEnterHandler: () => void = useCallback(() => {
-    setActive(true);
-  }, [setActive]);
-  const onMouseleaveHandler: () => void = useCallback(() => {
-    setActive(false);
-  }, [setActive]);
+
+    setActive(!active);
+  }, [active]);
+
+
   return (
     <Container className={classes.root}>
-      <Box className={classes.box} onMouseLeave={onMouseleaveHandler}>
+      <Box className={classes.box} >
         <Link to={routerLinks.home} className={classes.link}>
           Home
         </Link>
@@ -82,11 +83,11 @@ const HeaderNav: FunctionComponent = () => {
 
         <div
           className={classes.dropDown}
-          onMouseEnter={onMouseEnterHandler}
+
           onClick={onMouseEnterHandler}
         >
           <Collapse in={active} timeout="auto" unmountOnExit>
-            <Dropdown active={active} />
+            <Dropdown active={active}  />
           </Collapse>
           Create User
         </div>

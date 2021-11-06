@@ -4,6 +4,7 @@ interface routerLinksTypes {
     main_list: string,
     projects: string,
     contactUs: string,
+    createUsers: string,
 }
 
 
@@ -15,5 +16,6 @@ interface routerLinksTypes {
     main_list: "/main_list" ,
     projects: "/projects" ,
     contactUs: "/contactUs" ,
+    createUsers: "/createUsers" ,
 
 }

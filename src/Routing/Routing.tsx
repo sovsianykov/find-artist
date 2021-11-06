@@ -13,6 +13,7 @@ import About from "../pages/About/About";
 import MainList from "../pages/MainList/MainList";
 import Projects from "../pages/Projects/Projects";
 import ContactUs from "../pages/ConactUs/ContactUs";
+import CreateUsers from "../pages/CreateUsers/CreateUsers";
 
 const Routing: FunctionComponent = () => {
   return (
@@ -23,6 +24,7 @@ const Routing: FunctionComponent = () => {
         <Route path={routerLinks.main_list} component={MainList} />
         <Route path={routerLinks.projects} component={Projects} />
         <Route path={routerLinks.contactUs} component={ContactUs} />
+        <Route path={routerLinks.createUsers} component={CreateUsers} />
       </Switch>
     </div>
   );

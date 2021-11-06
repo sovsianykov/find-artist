@@ -6,9 +6,9 @@ import {Theme} from "@mui/material";
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
         root: {
-            maxWidth: "1600px",
+            maxWidth: "1100px",
             margin: "200px  auto 0 ",
-            background: theme.palette.success.main,
+
         },
     })
 );
