@@ -9,8 +9,10 @@ interface PageProps {
   sideBar?: JSX.Element;
   title: string;
   sideBarButton?:JSX.Element;
+  contentDisplay: "flex" | "block";
 }
-const useStyles = makeStyles((theme: Theme) => createStyles({
+
+const useStyles = makeStyles<Theme,Pick<PageProps, "contentDisplay">>((theme: Theme) => createStyles({
     root: {
         width: "100%",
         display: "flex",
@@ -18,9 +20,10 @@ const useStyles = makeStyles((theme: Theme) => createStyles({
     },
 
     heading : {
-        width: "100%",
+        width: "98%",
+
         height: 50,
-        padding: theme.spacing(4),
+         padding: theme.spacing(4),
          display: "flex",
          flexDirection: "row",
          justifyContent:"flex-start",
@@ -28,7 +31,7 @@ const useStyles = makeStyles((theme: Theme) => createStyles({
     },
     titleBlock : {
         width: "100%",
-        padding: `${theme.spacing(2)} ${theme.spacing(10)}`,
+        padding: `${theme.spacing(2)} ${theme.spacing(6)}`,
         background: theme.palette.success.light,
     },
     sideBarButton : {
@@ -36,7 +39,7 @@ const useStyles = makeStyles((theme: Theme) => createStyles({
     },
     content : {
         width: "100%",
-        display: "flex",
+        display: ({contentDisplay})=> contentDisplay
     }
 
 }));
@@ -47,9 +50,9 @@ const Page: FunctionComponent<PageProps> = ({
   filterButton,
   sideBar,
   title,
-    sideBarButton,
+    contentDisplay
 }) => {
-    const classes = useStyles()
+    const classes = useStyles({contentDisplay})
   return (
       <Box className={classes.root} >
           <Container  >

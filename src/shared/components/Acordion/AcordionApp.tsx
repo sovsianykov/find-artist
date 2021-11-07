@@ -9,11 +9,11 @@ interface AccordionAppProps {
 
 const AccordionApp: FunctionComponent<AccordionAppProps> = ({ users }) => {
   return (
-    <div>
+    <>
       {users.map((user) => (
         <AccordionItem user={user} key={user.id} />
       ))}
-    </div>
+    </>
   );
 };
 export default AccordionApp;
