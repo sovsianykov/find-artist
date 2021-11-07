@@ -8,10 +8,6 @@ const useStyles = makeStyles({
   root: {
     margin: "0 auto",
     width: "100%",
-    // display: "flex",
-    // flexDirection: "row",
-    // justifyContent:"flex-start",
-    // alignItems:"center"
   },
 });
 

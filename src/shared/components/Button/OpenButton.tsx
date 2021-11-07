@@ -17,7 +17,6 @@ const OpenButton: FunctionComponent<OpenButtonProps> = ({
       onClick()
   },[active, onClick])
   return (<Button variant='text' onClick={toggleArrow} style={{width : 100}}>
-      { !active ? "open" : "close"}
       { !active ? <ArrowRightRounded/> : <ArrowLeftRounded/>}
 
   </Button>)

@@ -23,7 +23,7 @@ const useStyles = makeStyles((theme: Theme) =>
 
   createStyles({
     root: {
-      margin: "20px auto",
+      // margin: `${theme.spacing(4)} 0 0 0`,
       maxWidth: 350,
       display: "flex",
       flexDirection: "column",
@@ -39,19 +39,9 @@ const useStyles = makeStyles((theme: Theme) =>
       alignItems: "center",
       justifyContent:"center",
     },
-    BoxWrapper: {
-      width: "100%",
-      minHeight: 600,
-      padding: theme.spacing(1),
-      display: "flex",
-      flexDirection: "column",
-      justifyContent:"space-around",
-      alignItems:"center"
 
-
-    },
     inputField: {
-       display: "block",
+      display: "block",
       width: 200,
       fontSize: "18px",
       padding: theme.spacing(1),

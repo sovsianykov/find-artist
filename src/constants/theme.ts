@@ -39,7 +39,7 @@ const theme = createTheme({
         },
         warning : {
             main: "#8c8b8b",
-            light: "#d4d4d4",
+            light: "rgba(253,253,253,0.51)",
             dark: "#570202",
         },
     },

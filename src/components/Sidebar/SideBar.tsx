@@ -7,29 +7,39 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import InboxIcon from "@mui/icons-material/MoveToInbox";
 import MailIcon from "@mui/icons-material/Mail";
-import { makeStyles } from "@mui/styles";
-import {Collapse, duration, Theme} from "@mui/material";
-import { TransitionGroup } from "react-transition-group";
+import {createStyles, makeStyles} from "@mui/styles";
+import {Collapse, Theme} from "@mui/material";
+import {ArrowLeftRounded, ArrowRightRounded} from "@mui/icons-material";
+import theme from "../../constants/theme";
 export interface Props {
   active: boolean;
 }
-const useStyles = makeStyles<Theme, Pick<Props, "active">>({
+const useStyles = makeStyles<Theme, Pick<Props, "active">>((theme) => createStyles({
   root: {
 
   },
   drawer: {
     position:"relative",
-    zIndex: 4,
-    width: ({ active }) => (active ? 200 : 100),
+    zIndex: -1,
+    width: ({ active }) => (active ? 200 : 200),
     right: ({ active }) => (active ? 0 : 300),
-
-    // height: ({ active }) => (active ? 200 : 0),
-    // opacity: ({ active }) => (active ? 1 : 0),
     background: "#fff",
     transition: "1s ease-in-out"
-
   },
-});
+  openTab : {
+    display:"flex",
+    alignItems:"center",
+    justifyContent:"space-around",
+    width: 40,
+    height: 20,
+    cursor: "pointer",
+    color: theme.palette.primary.light,
+    transition: "0.15s ease-in-out",
+    "&:hover" : {
+      color: theme.palette.primary.main,
+    }
+  }
+}));
 const SideBar = () => {
   const [state, setState] = useState(false);
   const props = {
@@ -68,13 +78,13 @@ const SideBar = () => {
 
   return (
     <div className={classes.root}>
-        <Button onClick={toggleDrawer}>{"left"}</Button>
+        <div onClick={toggleDrawer} className={classes.openTab} >
+          { state ? "hide": "open" }
+          { state ? (<ArrowLeftRounded/>): (<ArrowRightRounded/>) }
+        </div>
           <div  onClick={toggleDrawer}>
-
             {list()}
           </div>
-        {/*</Collapse>*/}
-
     </div>
   );
 };

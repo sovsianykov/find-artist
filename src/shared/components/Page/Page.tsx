@@ -12,20 +12,14 @@ interface PageProps {
 }
 const useStyles = makeStyles((theme: Theme) => createStyles({
     root: {
-
         width: "100%",
         display: "flex",
         minHeight: 600,
+    },
 
-    },
-    mainWrapper : {
-        display: "flex",
-        flexDirection:"column",
-        alignItems: "center"
-    },
     heading : {
         width: "100%",
-        height: 100,
+        height: 50,
         padding: theme.spacing(4),
          display: "flex",
          flexDirection: "row",
@@ -38,14 +32,11 @@ const useStyles = makeStyles((theme: Theme) => createStyles({
         background: theme.palette.success.light,
     },
     sideBarButton : {
-        position:"absolute",
-        top:20,
-        left: 200,
+       marginLeft : `${theme.spacing(5)}`,
     },
     content : {
         width: "100%",
         display: "flex",
-        position: "relative",
     }
 
 }));
@@ -61,7 +52,6 @@ const Page: FunctionComponent<PageProps> = ({
     const classes = useStyles()
   return (
       <Box className={classes.root} >
-          {sideBar}
           <Container  >
               <div className={classes.heading}>
         <Typography variant='h4' className={classes.titleBlock}>
@@ -70,7 +60,7 @@ const Page: FunctionComponent<PageProps> = ({
               </div>
         <div className={classes.content}>
             <div className={classes.sideBarButton}>
-            {sideBarButton}
+                {sideBar}
             </div>
           {children}
         </div>

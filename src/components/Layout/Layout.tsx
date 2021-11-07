@@ -8,7 +8,6 @@ const useStyles = makeStyles((theme: Theme) =>
         root: {
             maxWidth: "1100px",
             margin: "200px  auto 0 ",
-
         },
     })
 );
