@@ -2,6 +2,7 @@ import React, { FormEvent, useState } from "react";
 import { Box, TextField, Theme, Typography } from "@mui/material";
 import { createStyles, makeStyles } from "@mui/styles";
 import { useFetch } from "../../hooks/useFetch";
+import { Filters } from "../../models/models";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -33,13 +34,15 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 );
 
+const filtersDefaultData = { name: "", instrument: "", city: "All" };
+
 const Filter = () => {
-  const [filteredName, setFilteredName] = useState<string>("");
+  const [filters, setFilters] = useState<Filters>(filtersDefaultData);
   const { users, loading, error } = useFetch();
-  const onchangeHandler = (
+  const updateFilters = (
     e: FormEvent<HTMLTextAreaElement | HTMLInputElement>
   ) => {
-    setFilteredName(e.currentTarget.value);
+    setFilters({ ...filters, [e.currentTarget.name]: e.currentTarget.value });
   };
   const classes = useStyles();
   return (
@@ -59,8 +62,8 @@ const Filter = () => {
         id="filteredName"
         label="name"
         variant="standard"
-        value={filteredName}
-        onChange={onchangeHandler}
+        value={filters}
+        onChange={updateFilters}
       />
     </Box>
   );
