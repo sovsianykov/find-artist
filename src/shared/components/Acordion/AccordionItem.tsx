@@ -6,60 +6,57 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import Typography from "@mui/material/Typography";
 import AccordionDetails from "@mui/material/AccordionDetails";
 import { Avatar, Button } from "@mui/material";
-import {Delete, Edit, PhoneInTalkTwoTone} from "@mui/icons-material";
+import { Delete, Edit, PhoneInTalkTwoTone } from "@mui/icons-material";
 import emptyAvatar from "../../../assets/avatars/emptyAvatar.png";
 import { updateDoc, doc, deleteDoc } from "firebase/firestore";
 import { db } from "../../../firebase/firebase";
 import { useDispatch } from "react-redux";
 import { fetchSuccess, fetchStart } from "../../../redux/actions";
-import {makeStyles} from "@mui/styles";
+import { makeStyles } from "@mui/styles";
 
 interface AccordionItemProps {
   user: User;
 }
 const useStyles = makeStyles({
-  root : {
+  root: {
     display: "flex",
     alignItems: "center",
     justifyContent: "space-between",
     width: 450,
     height: "100%",
   },
-  avatar : {
+  avatar: {
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
     width: "100px",
     height: "100%",
   },
-  content : {
-
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "space-between",
-      width: "100%",
-      height: "100%",
-    },
-    iconsWrapper : {
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "space-around",
-      width: 100,
-      height: "100%",
-    },
-  phone : {
+  content: {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "space-between",
+    width: "100%",
+    height: "100%",
+  },
+  iconsWrapper: {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "space-around",
+    width: 100,
+    height: "100%",
+  },
+  phone: {
     display: "flex",
     alignItems: "center",
     justifyContent: "space-between",
     width: 150,
     height: "100%",
-
-  }
-
-})
+  },
+});
 
 const AccordionItem: FunctionComponent<AccordionItemProps> = ({ user }) => {
-  const classes = useStyles()
+  const classes = useStyles();
   const dispatch = useDispatch();
   const avatar = useMemo(() => {
     return user.avatarUrl === "" ? emptyAvatar : user.avatarUrl;
@@ -81,41 +78,36 @@ const AccordionItem: FunctionComponent<AccordionItemProps> = ({ user }) => {
         expandIcon={<ExpandMoreIcon />}
         aria-controls="panel1a-content"
         id="panel1a-header"
-
       >
         <section className={classes.root}>
           <div className={classes.avatar}>
-        <Avatar src={avatar} alt={user.lastName} />
+            <Avatar src={avatar} alt={user.lastName} />
           </div>
-        <Typography variant='subtitle1'  color='success'>
-          {user.firstName} {user.lastName}{" "}
-        </Typography>
-        <Typography variant="subtitle1" color="primary">
-          {user.instrument}
-        </Typography>
-          <Typography  color="success">
-          city : {user.city}
+          <Typography variant="subtitle1" color="success">
+            {user.firstName} {user.lastName}{" "}
           </Typography>
+          <Typography variant="subtitle1" color="primary">
+            {user.instrument}
+          </Typography>
+          <Typography color="success">city : {user.city}</Typography>
         </section>
       </AccordionSummary>
       <AccordionDetails>
         <section className={classes.content}>
           <div className={classes.root}>
-        <Typography variant='body1'>
-          {user.description}
-        </Typography>
+            <Typography variant="body1">{user.description}</Typography>
             <div className={classes.phone}>
-            <PhoneInTalkTwoTone/>
-            {user.phone}
+              <PhoneInTalkTwoTone />
+              {user.phone}
             </div>
           </div>
           <div className={classes.iconsWrapper}>
-        <Button variant="text" color="secondary" onClick={updateUser}>
-          <Edit />
-        </Button>
-        <Button variant="text" color="secondary" onClick={deleteUser}>
-          <Delete />
-        </Button>
+            <Button variant="text" color="secondary" onClick={updateUser}>
+              <Edit />
+            </Button>
+            <Button variant="text" color="secondary" onClick={deleteUser}>
+              <Delete />
+            </Button>
           </div>
         </section>
       </AccordionDetails>

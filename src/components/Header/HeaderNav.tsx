@@ -5,7 +5,6 @@ import { routerLinks } from "../../constants/RouterLinks";
 import { Link } from "react-router-dom";
 import Dropdown from "../Dropdown/Dropdown";
 
-
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
@@ -33,6 +32,7 @@ const useStyles = makeStyles((theme: Theme) =>
       justifyContent: "center",
       textDecoration: "none",
       color: theme.palette.success.main,
+      fontFamily: theme.typography.fontFamily,
       fontWeight: 600,
       letterSpacing: 1.9,
       fontSize: "20px",
@@ -44,7 +44,7 @@ const useStyles = makeStyles((theme: Theme) =>
     dropDown: {
       position: "relative",
       zIndex: 10,
-      height:40,
+      height: 40,
       display: "flex",
       alignItems: "center",
       justifyContent: "center",
@@ -66,14 +66,12 @@ const HeaderNav: FunctionComponent = () => {
   const [active, setActive] = useState<boolean>(false);
   const classes = useStyles();
   const onMouseEnterHandler: () => void = useCallback(() => {
-
     setActive(!active);
   }, [active]);
 
-
   return (
     <Container className={classes.root}>
-      <Box className={classes.box} >
+      <Box className={classes.box}>
         <Link to={routerLinks.home} className={classes.link}>
           Home
         </Link>
@@ -81,13 +79,9 @@ const HeaderNav: FunctionComponent = () => {
           Base
         </Link>
 
-        <div
-          className={classes.dropDown}
-
-          onClick={onMouseEnterHandler}
-        >
+        <div className={classes.dropDown} onClick={onMouseEnterHandler}>
           <Collapse in={active} timeout="auto" unmountOnExit>
-            <Dropdown active={active}  />
+            <Dropdown active={active} />
           </Collapse>
           Create User
         </div>
