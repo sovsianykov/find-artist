@@ -3,6 +3,7 @@ import AccordionApp from "../../shared/components/Acordion/AcordionApp";
 import { useFetch } from "../../hooks/useFetch";
 import Page from "../../shared/components/Page/Page";
 import { Collapse, duration } from "@mui/material";
+import SideBar from "../../components/Sidebar/SideBar";
 
 const MainList = () => {
   const { users, loading, error } = useFetch();
@@ -14,15 +15,15 @@ const MainList = () => {
     return <h1>Something vent wrong ...</h1>;
   }
   return (
-    <Page title={"Main List"} contentDisplay="block">
+    <Page title={"Main List"} sideBar={<SideBar />}
+          contentDisplay="flex" >
+
       <Collapse
         in={!loading}
         orientation="vertical"
         timeout={duration.standard}
       >
-
         <AccordionApp users={users} />
-
       </Collapse>
     </Page>
   );

@@ -18,6 +18,9 @@ interface AccordionItemProps {
   user: User;
 }
 const useStyles = makeStyles({
+      rootWrapper: {
+        width: "55vw"
+      },
   root: {
     display: "flex",
     alignItems: "center",
@@ -73,7 +76,7 @@ const AccordionItem: FunctionComponent<AccordionItemProps> = ({ user }) => {
     dispatch(fetchSuccess());
   };
   return (
-    <Accordion>
+    <Accordion draggable className={classes.rootWrapper}>
       <AccordionSummary
         expandIcon={<ExpandMoreIcon />}
         aria-controls="panel1a-content"

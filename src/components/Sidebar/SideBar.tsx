@@ -11,6 +11,7 @@ import {createStyles, makeStyles} from "@mui/styles";
 import {Collapse, Theme} from "@mui/material";
 import {ArrowLeftRounded, ArrowRightRounded} from "@mui/icons-material";
 import theme from "../../constants/theme";
+import Filter from "./Filter";
 export interface Props {
   active: boolean;
 }
@@ -62,16 +63,19 @@ const SideBar = () => {
   const list = () => (
     <Box role="presentation" onClick={toggleDrawer} onKeyDown={toggleDrawer} >
       <Collapse in={state} orientation='horizontal'>
-      <List className={classes.drawer}  >
-        {["Inbox", "Starred", "Send email", "Drafts"].map((text, index) => (
-          <ListItem button key={text} >
-            <ListItemIcon>
-              {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-            </ListItemIcon>
-            <ListItemText primary={text} />
-          </ListItem>
-        ))}
-      </List>
+      {/*<List className={classes.drawer}  >*/}
+      {/*  {["Inbox", "Starred", "Send email", "Drafts"].map((text, index) => (*/}
+      {/*    <ListItem button key={text} >*/}
+      {/*      <ListItemIcon>*/}
+      {/*        {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}*/}
+      {/*      </ListItemIcon>*/}
+      {/*      <ListItemText primary={text} />*/}
+      {/*    </ListItem>*/}
+      {/*  ))}*/}
+      {/*</List>*/}
+        <div className={classes.drawer}>
+        <Filter />
+        </div>
       </Collapse>
     </Box>
   );
