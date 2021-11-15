@@ -6,12 +6,7 @@ import SideBar from "../../components/Sidebar/SideBar";
 
 const CreateUsers = () => {
   return (
-    <Page
-      title="Create artist profile"
-      sideBar={<SideBar />}
-      contentDisplay="flex"
-
-    >
+    <Page title="Create artist profile" contentDisplay="flex">
       <Container>
         <AddUsersForm title={" new artist"} />
       </Container>

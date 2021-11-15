@@ -1,94 +1,66 @@
-import React, { useState } from "react";
+import React, { FunctionComponent, useState } from "react";
 import Box from "@mui/material/Box";
-import Button from "@mui/material/Button";
-import List from "@mui/material/List";
-import ListItem from "@mui/material/ListItem";
-import ListItemIcon from "@mui/material/ListItemIcon";
-import ListItemText from "@mui/material/ListItemText";
-import InboxIcon from "@mui/icons-material/MoveToInbox";
-import MailIcon from "@mui/icons-material/Mail";
-import {createStyles, makeStyles} from "@mui/styles";
-import {Collapse, Theme} from "@mui/material";
-import {ArrowLeftRounded, ArrowRightRounded} from "@mui/icons-material";
-import theme from "../../constants/theme";
-import Filter from "./Filter";
-export interface Props {
-  active: boolean;
-}
-const useStyles = makeStyles<Theme, Pick<Props, "active">>((theme) => createStyles({
-  root: {
+import { createStyles, makeStyles } from "@mui/styles";
+import { Collapse, duration, Theme } from "@mui/material";
+import { ArrowLeftRounded, ArrowRightRounded } from "@mui/icons-material";
 
-  },
-  drawer: {
-    position:"relative",
-    zIndex: -1,
-    width: ({ active }) => (active ? 200 : 200),
-    right: ({ active }) => (active ? 0 : 300),
-    background: "#fff",
-    transition: "1s ease-in-out"
-  },
-  openTab : {
-    display:"flex",
-    alignItems:"center",
-    justifyContent:"space-around",
-    width: 40,
-    height: 20,
-    cursor: "pointer",
-    color: theme.palette.primary.light,
-    transition: "0.15s ease-in-out",
-    "&:hover" : {
-      color: theme.palette.primary.main,
-    }
-  }
-}));
-const SideBar = () => {
-  const [state, setState] = useState(false);
+export interface Props {
+  active?: boolean;
+  children: JSX.Element | JSX.Element[];
+}
+const useStyles = makeStyles<Theme, Pick<Props, "active">>((theme) =>
+  createStyles({
+    root: {
+      minWidth: 60,
+    },
+    drawer: {
+      position: "relative",
+      zIndex: 0,
+      width: ({ active }) => (active ? 300 : 0),
+      right: ({ active }) => (active ? 0 : 300),
+      background: "#fff",
+      transition: "1s ease-in-out",
+    },
+    openTab: {
+      display: "flex",
+      justifyContent: "space-around",
+      width: 60,
+      height: 20,
+      cursor: "pointer",
+      // color: theme.palette.primary.light,
+      transition: "0.15s ease-in-out",
+      "&:hover": {
+        color: theme.palette.primary.main,
+      },
+    },
+  })
+);
+const SideBar: FunctionComponent<Props> = ({ children, active }) => {
+  const [open, setOpen] = useState(false);
   const props = {
-    active: state,
+    active: open,
   };
 
   const classes = useStyles(props);
-  console.log(state);
-  const toggleDrawer = (event: React.KeyboardEvent | React.MouseEvent) => {
-    if (
-      event.type === "keydown" &&
-      ((event as React.KeyboardEvent).key === "Tab" ||
-        (event as React.KeyboardEvent).key === "Shift")
-    ) {
-      return;
-    }
-    setState(!state);
+  const toggleDrawer = () => {
+    setOpen(!open);
   };
-
-  const list = () => (
-    <Box role="presentation" onClick={toggleDrawer} onKeyDown={toggleDrawer} >
-      <Collapse in={state} orientation='horizontal'>
-      {/*<List className={classes.drawer}  >*/}
-      {/*  {["Inbox", "Starred", "Send email", "Drafts"].map((text, index) => (*/}
-      {/*    <ListItem button key={text} >*/}
-      {/*      <ListItemIcon>*/}
-      {/*        {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}*/}
-      {/*      </ListItemIcon>*/}
-      {/*      <ListItemText primary={text} />*/}
-      {/*    </ListItem>*/}
-      {/*  ))}*/}
-      {/*</List>*/}
-        <div className={classes.drawer}>
-        <Filter />
-        </div>
-      </Collapse>
-    </Box>
-  );
-
   return (
     <div className={classes.root}>
-        <div onClick={toggleDrawer} className={classes.openTab} >
-          { state ? "hide": "open" }
-          { state ? (<ArrowLeftRounded/>): (<ArrowRightRounded/>) }
-        </div>
-          <div  onClick={toggleDrawer}>
-            {list()}
-          </div>
+      <div onClick={toggleDrawer} className={classes.openTab}>
+        {open ? "hide" : "open"}
+        {open ? <ArrowLeftRounded /> : <ArrowRightRounded />}
+      </div>
+      <Box role="presentation">
+        <Collapse
+          in={open}
+          component="div"
+          orientation="horizontal"
+          timeout={duration.complex}
+        >
+          <div className={classes.drawer}>{children}</div>
+        </Collapse>
+      </Box>
     </div>
   );
 };

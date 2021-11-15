@@ -1,28 +1,23 @@
 import React, { FunctionComponent } from "react";
 import { createStyles, makeStyles } from "@mui/styles";
 import { Theme } from "@mui/material";
-import HeaderNav from "./HeaderNav";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
       width: "100%",
-      height: 150,
+      height: 100,
       position: "fixed",
-      top: 0,
+      bottom: 0,
       background: theme.palette.primary.light,
     },
   })
 );
 
-const HeaderApp: FunctionComponent = () => {
+const Footer: FunctionComponent = () => {
   const classes = useStyles();
 
-  return (
-    <header className={classes.root}>
-      <HeaderNav />
-    </header>
-  );
+  return <footer className={classes.root}></footer>;
 };
 
-export default HeaderApp;
+export default Footer;

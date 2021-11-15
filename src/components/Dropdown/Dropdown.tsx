@@ -1,19 +1,18 @@
-import React, {FunctionComponent, useCallback} from "react";
+import React, { FunctionComponent, useCallback } from "react";
 import { Paper, Theme, Typography } from "@mui/material";
 import { createStyles, makeStyles } from "@mui/styles";
 import { routerLinks } from "../../constants/RouterLinks";
-import { Link } from "react-router-dom"
+import { Link } from "react-router-dom";
 
 export interface DropdownProps {
   active: boolean;
-
 }
 
 const useStyles = makeStyles<Theme, Pick<DropdownProps, "active">>(
   (theme: Theme) =>
     createStyles({
       root: {
-        width: ({ active }) => (active ? 200 : 200),
+        width: ({ active }) => (active ? 200 : 100),
         height: ({ active }) => (active ? 100 : 0),
         position: "absolute",
         zIndex: 100,
@@ -39,11 +38,11 @@ const useStyles = makeStyles<Theme, Pick<DropdownProps, "active">>(
 
 const Dropdown: FunctionComponent<DropdownProps> = ({ active }) => {
   const classes = useStyles({ active });
-  console.log(active, 'dropdown');
+  console.log(active, "dropdown");
 
   return (
     <Paper className={classes.root}>
-      <Link to={routerLinks.createUsers}  >
+      <Link to={routerLinks.createUsers}>
         <Typography variant="subtitle1" className={classes.text}>
           create artist profile
         </Typography>

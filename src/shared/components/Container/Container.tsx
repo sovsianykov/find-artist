@@ -2,7 +2,7 @@ import React, { FunctionComponent } from "react";
 import { makeStyles } from "@mui/styles";
 
 export interface ContainerProps {
-  children: JSX.Element | JSX.Element[] ;
+  children: JSX.Element | JSX.Element[];
 }
 const useStyles = makeStyles({
   root: {

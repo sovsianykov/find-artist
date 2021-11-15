@@ -11,7 +11,7 @@ export interface ButtonProps {
 const CustomButton: FunctionComponent<ButtonProps> = ({
   onClick,
   children,
-    fullWidth
+  fullWidth,
 }) => {
   return (
     <Button variant="contained" fullWidth={fullWidth} onClick={onClick}>

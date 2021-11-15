@@ -1,12 +1,5 @@
 import React, { FunctionComponent } from "react";
-import {
-  Route,
-  Link,
-  RouteComponentProps,
-  Switch,
-  SwitchProps,
-  useLocation,
-} from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 import { routerLinks } from "../constants/RouterLinks";
 import Home from "../pages/Home/Home";
 import About from "../pages/About/About";

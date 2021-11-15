@@ -83,7 +83,7 @@ const HeaderNav: FunctionComponent = () => {
           <Collapse in={active} timeout="auto" unmountOnExit>
             <Dropdown active={active} />
           </Collapse>
-          Create User
+          <h4>Edit</h4>
         </div>
 
         <Link to={routerLinks.about} className={classes.link}>

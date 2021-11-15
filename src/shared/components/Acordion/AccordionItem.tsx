@@ -13,19 +13,27 @@ import { db } from "../../../firebase/firebase";
 import { useDispatch } from "react-redux";
 import { fetchSuccess, fetchStart } from "../../../redux/actions";
 import { makeStyles } from "@mui/styles";
+import theme from "../../../constants/theme";
 
 interface AccordionItemProps {
   user: User;
 }
 const useStyles = makeStyles({
-      rootWrapper: {
-        width: "55vw"
-      },
+  rootWrapper: {
+    width: 700,
+  },
   root: {
     display: "flex",
     alignItems: "center",
     justifyContent: "space-between",
     width: 450,
+    height: "100%",
+  },
+  nameArea: {
+    display: "flex",
+    alignItems: "center",
+    marginLeft: theme.spacing(3),
+    width: 500,
     height: "100%",
   },
   avatar: {
@@ -40,6 +48,13 @@ const useStyles = makeStyles({
     alignItems: "center",
     justifyContent: "space-between",
     width: "100%",
+    height: "100%",
+  },
+  textItem: {
+    display: "flex",
+    alignItems: "center",
+
+    width: 150,
     height: "100%",
   },
   iconsWrapper: {
@@ -86,13 +101,25 @@ const AccordionItem: FunctionComponent<AccordionItemProps> = ({ user }) => {
           <div className={classes.avatar}>
             <Avatar src={avatar} alt={user.lastName} />
           </div>
-          <Typography variant="subtitle1" color="success">
-            {user.firstName} {user.lastName}{" "}
-          </Typography>
-          <Typography variant="subtitle1" color="primary">
-            {user.instrument}
-          </Typography>
-          <Typography color="success">city : {user.city}</Typography>
+          <div className={classes.nameArea}>
+            <Typography
+              variant="subtitle1"
+              color="success"
+              className={classes.textItem}
+            >
+              {user.firstName} {user.lastName}{" "}
+            </Typography>
+            <Typography
+              variant="subtitle1"
+              color="primary"
+              className={classes.textItem}
+            >
+              {user.instrument}
+            </Typography>
+            <Typography color="success" className={classes.textItem}>
+              city : {user.city}
+            </Typography>
+          </div>
         </section>
       </AccordionSummary>
       <AccordionDetails>

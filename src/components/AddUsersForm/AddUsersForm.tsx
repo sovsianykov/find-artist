@@ -1,10 +1,5 @@
-import React, {
-  FormEvent,
-  FunctionComponent,
-  SyntheticEvent,
-  useState,
-} from "react";
-import { initialUser, User } from "../../models/models";
+import React, { FunctionComponent } from "react";
+
 import {
   Box,
   Container,
@@ -16,8 +11,7 @@ import {
 } from "@mui/material";
 import Button from "../../shared/components/Button/CustomButton";
 import { createStyles, makeStyles } from "@mui/styles";
-import { useDispatch } from "react-redux";
-import { createUser, fetchStart, fetchSuccess } from "../../redux/actions";
+import { useForm } from "../../hooks/useForm";
 
 export interface AddUsersFormProps {
   title: string;
@@ -26,16 +20,15 @@ export interface AddUsersFormProps {
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
-      // margin: `${theme.spacing(4)} 0 0 0`,
-      maxWidth: 350,
+      maxWidth: 300,
       display: "flex",
       flexDirection: "column",
       justifyContent: "center",
       alignItems: "center",
     },
     mainWrapper: {
-      width: 350,
-      minHeight: 600,
+      width: 300,
+      minHeight: 400,
       padding: `${theme.spacing(3)}`,
       display: "flex",
       flexDirection: "column",
@@ -46,12 +39,12 @@ const useStyles = makeStyles((theme: Theme) =>
     inputField: {
       display: "block",
       width: 200,
-      fontSize: "18px",
+      fontSize: "16px",
       padding: theme.spacing(1),
       border: "1px solid red",
     },
     txtAreaWrapper: {
-      width: 375,
+      width: 300,
       height: 50,
       display: "flex",
       alignItems: "center",
@@ -71,22 +64,8 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 const AddUsersForm: FunctionComponent<AddUsersFormProps> = ({ title }) => {
-  const dispatch = useDispatch();
   const classes = useStyles();
-  const [newUser, setNewUser] = useState<User>(initialUser);
-
-  const onchangeHandler = (
-    e: FormEvent<HTMLTextAreaElement | HTMLInputElement>
-  ) => {
-    setNewUser({ ...newUser, [e.currentTarget.name]: e.currentTarget.value });
-  };
-  const onSubmitHandler = async (e: SyntheticEvent) => {
-    e.preventDefault();
-    dispatch(createUser(newUser));
-    dispatch(fetchStart());
-    dispatch(fetchSuccess());
-    setNewUser(initialUser);
-  };
+  const { newUser, onChangeHandler, onSubmitHandler } = useForm();
 
   return (
     <Container>
@@ -111,7 +90,7 @@ const AddUsersForm: FunctionComponent<AddUsersFormProps> = ({ title }) => {
             label="first name"
             variant="standard"
             value={newUser.firstName}
-            onChange={onchangeHandler}
+            onChange={onChangeHandler}
           />
 
           <TextField
@@ -122,7 +101,7 @@ const AddUsersForm: FunctionComponent<AddUsersFormProps> = ({ title }) => {
             label="lastName"
             variant="standard"
             value={newUser.lastName}
-            onChange={onchangeHandler}
+            onChange={onChangeHandler}
           />
           <TextField
             required
@@ -132,7 +111,7 @@ const AddUsersForm: FunctionComponent<AddUsersFormProps> = ({ title }) => {
             name="instrument"
             id="instrument"
             value={newUser.instrument}
-            onChange={onchangeHandler}
+            onChange={onChangeHandler}
           />
           <TextField
             className={classes.inputField}
@@ -141,7 +120,7 @@ const AddUsersForm: FunctionComponent<AddUsersFormProps> = ({ title }) => {
             name="country"
             id="country"
             value={newUser.country}
-            onChange={onchangeHandler}
+            onChange={onChangeHandler}
           />
           <TextField
             className={classes.inputField}
@@ -150,7 +129,7 @@ const AddUsersForm: FunctionComponent<AddUsersFormProps> = ({ title }) => {
             name="city"
             id="city"
             value={newUser.city}
-            onChange={onchangeHandler}
+            onChange={onChangeHandler}
           />
           <TextField
             className={classes.inputField}
@@ -159,7 +138,7 @@ const AddUsersForm: FunctionComponent<AddUsersFormProps> = ({ title }) => {
             name="phone"
             id="phone"
             value={newUser.phone}
-            onChange={onchangeHandler}
+            onChange={onChangeHandler}
           />
           <TextField
             variant="standard"
@@ -168,7 +147,7 @@ const AddUsersForm: FunctionComponent<AddUsersFormProps> = ({ title }) => {
             name="avatarUrl"
             id="avatarUrl"
             value={newUser.avatarUrl}
-            onChange={onchangeHandler}
+            onChange={onChangeHandler}
           />
 
           <div className={classes.txtAreaWrapper}>
@@ -178,7 +157,7 @@ const AddUsersForm: FunctionComponent<AddUsersFormProps> = ({ title }) => {
               name="description"
               id="description"
               value={newUser.description}
-              onChange={onchangeHandler}
+              onChange={onChangeHandler}
             />
           </div>
 
