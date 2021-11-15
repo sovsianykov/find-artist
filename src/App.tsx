@@ -1,5 +1,4 @@
 import React from "react";
-import { createBrowserHistory } from "history";
 import { BrowserRouter as Router } from "react-router-dom";
 import { ThemeProvider } from "@mui/material";
 import Layout from "./components/Layout/Layout";

@@ -1,9 +1,7 @@
 import React, { FormEvent, SyntheticEvent, useState } from "react";
-import { Box, Button, TextField, Theme, Typography } from "@mui/material";
+import { Box, Button, TextField, Theme } from "@mui/material";
 import { createStyles, makeStyles } from "@mui/styles";
 import { Filters } from "../../models/models";
-import { Search } from "@mui/icons-material";
-import CustomButton from "../../shared/components/Button/CustomButton";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
